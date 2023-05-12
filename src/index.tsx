@@ -1,8 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const cors = require("cors");
+import cors from "cors";
 
 const PORT = 5000;
 const mongoURL =
@@ -19,12 +17,15 @@ const PaymentRequestsModel = mongoose.model(
 mongoose
   .connect(mongoURL)
   .then(() => {
+    // eslint-disable-next-line no-console
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
+      // eslint-disable-next-line no-console
       console.log(`Server is running on port ${PORT}`);
     });
   })
   .catch((error: Error) => {
+    // eslint-disable-next-line no-console
     console.log(error);
   });
 
@@ -45,10 +46,12 @@ app.post("/DB", async (req: express.Request, res: express.Response) => {
     newPaymentRequest
       .save()
       .then((result: any) => {
+        // eslint-disable-next-line no-console
         console.log("New account saved successfully:", result);
         res.status(201).json(result);
       })
       .catch((error: Error) => {
+        // eslint-disable-next-line no-console
         console.error("Error saving payment request:", error);
         res.status(500).json({
           error: "An error occurred while saving the payment request",
@@ -68,6 +71,7 @@ app.get(
         res.send(result);
       })
       .catch((error: Error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
       });
   }
@@ -89,6 +93,7 @@ app.put(
       } else {
         return res.status(400).json({ message: "Insufficient Balance" });
       }
+      // eslint-disable-next-line no-console
       console.log("Account Balance Updated");
       return res.status(200).json({ message: "Account Balance Updated" });
     } catch (error: any) {
