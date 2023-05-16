@@ -92,6 +92,7 @@ app.put(
       }
       const UpdatedAmount: number = account2Update.amount - req.body.amount;
       if (UpdatedAmount >= 0) {
+        account2Update.amount = UpdatedAmount;
         await account2Update.save();
       } else {
         return res.status(400).json({ message: "Insufficient Balance" });
