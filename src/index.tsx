@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const PaymentRequestsSchema = require("./models/paymentRequestSchema");
+
 const PORT = 5000;
 const mongoURL =
   "mongodb+srv://admin:123Admin456@paymentdbtest.qubrpxb.mongodb.net/paymentRequests";
